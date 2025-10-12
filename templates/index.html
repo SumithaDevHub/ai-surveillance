@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PERIMETER-LOCK | AI Tactical Home Surveillance</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/3064/3064197.png">
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body { background-color: #030712; overflow-x: hidden; }
+    .gradient-text { background: linear-gradient(90deg,#00e5ff,#0071ff,#4f46e5); -webkit-background-clip: text; color: transparent; }
+    .fade-in { opacity:0; transform:translateY(40px); transition:all 1.2s ease; }
+    .fade-in.visible { opacity:1; transform:translateY(0); }
+    .glow-border { border: 1px solid rgba(0,200,255,0.4); box-shadow:0 0 15px rgba(0,200,255,0.2); }
+    #particles-js { position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1; }
+    .glass { background: rgba(255,255,255,0.05); backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.1); }
+    .neon-btn { transition: all 0.3s; }
+    .neon-btn:hover { box-shadow: 0 0 25px #00e5ff; transform: scale(1.05); }
+    .radar {
+      position:absolute; top:50%; left:50%; transform:translate(-50%, -50%);
+      width:500px; height:500px; border-radius:50%;
+      background:radial-gradient(circle at center, rgba(0,200,255,0.25) 0%, transparent 70%);
+      animation:pulse 4s infinite;
+      z-index:-1;
+    }
+    @keyframes pulse {
+      0% { transform:translate(-50%,-50%) scale(0.9); opacity:0.5; }
+      50% { transform:translate(-50%,-50%) scale(1.05); opacity:0.8; }
+      100% { transform:translate(-50%,-50%) scale(0.9); opacity:0.5; }
+    }
+  </style>
+</head>
+
+<body class="text-gray-100 font-sans relative">
+
+  <!-- Particle Background -->
+  <div id="particles-js"></div>
+
+  <!-- NAV -->
+  <header class="fixed w-full z-50 glass">
+    <div class="max-w-7xl mx-auto flex justify-between items-center p-4 md:px-8">
+      <h1 class="text-2xl font-bold gradient-text">PERIMETER-LOCK</h1>
+      <nav class="hidden md:flex space-x-8 text-gray-300 text-sm font-medium">
+        <a href="#home" class="hover:text-blue-400 transition">Home</a>
+        <a href="#features" class="hover:text-blue-400 transition">Features</a>
+        <a href="#why" class="hover:text-blue-400 transition">Why</a>
+        <!-- <a href="#contact" class="hover:text-blue-400 transition">Contact</a> -->
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="home" class="relative flex flex-col justify-center items-center text-center min-h-screen overflow-hidden">
+    <div class="radar"></div>
+    <div class="z-10 max-w-2xl mt-20 md:mt-28 px-6">
+      <h2 class="text-5xl md:text-6xl font-extrabold mb-8 gradient-text tracking-wide leading-tight">
+        AI Tactical Home Surveillance
+      </h2>
+      <p class="text-gray-300 mb-10 text-lg md:text-xl leading-relaxed">
+        Next-Gen AI Defense for Modern Homes. <br> Intelligent Detection. Instant Action. Ultimate Peace of Mind.
+      </p>
+      <div class="flex justify-center">
+        <button onclick="window.location.href='/dashboard'" 
+        class="neon-btn bg-blue-600 px-8 py-3 rounded-lg font-semibold text-white text-lg">
+  Get Started
+</button>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEMS -->
+  <section class="fade-in py-28">
+    <div class="max-w-6xl mx-auto text-center px-6">
+      <h3 class="text-4xl font-bold mb-16 gradient-text">Why Old Security Fails</h3>
+      <div class="grid md:grid-cols-3 gap-10">
+        <div class="glass p-8 rounded-xl glow-border hover:scale-105 transition-transform">
+          <h4 class="text-blue-400 font-semibold mb-3 text-lg">Inconsistent Monitoring</h4>
+          <p class="text-gray-300">Human monitoring is error-prone and unreliable.</p>
+        </div>
+        <div class="glass p-8 rounded-xl glow-border hover:scale-105 transition-transform">
+          <h4 class="text-blue-400 font-semibold mb-3 text-lg">Delayed Response</h4>
+          <p class="text-gray-300">Threats escalate before anyone reacts.</p>
+        </div>
+        <div class="glass p-8 rounded-xl glow-border hover:scale-105 transition-transform">
+          <h4 class="text-blue-400 font-semibold mb-3 text-lg">No AI Intelligence</h4>
+          <p class="text-gray-300">Traditional systems can’t analyze suspicious activity automatically.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="features" class="fade-in py-28 bg-gray-900/50">
+    <div class="max-w-6xl mx-auto text-center px-6">
+      <h3 class="text-4xl font-bold mb-16 gradient-text">AI-Powered Security, Step by Step</h3>
+      <div class="grid md:grid-cols-3 gap-10">
+        <div class="glass p-8 rounded-xl glow-border">
+          <h4 class="text-blue-400 font-semibold mb-3 text-lg">Home Camera Monitoring</h4>
+          <p class="text-gray-300">Every corner covered, 24/7.</p>
+        </div>
+        <div class="glass p-8 rounded-xl glow-border">
+          <h4 class="text-blue-400 font-semibold mb-3 text-lg">AI Processing</h4>
+          <p class="text-gray-300">Instant face, logo, and motion detection.</p>
+        </div>
+        <div class="glass p-8 rounded-xl glow-border">
+          <h4 class="text-blue-400 font-semibold mb-3 text-lg">Smart Alerts</h4>
+          <p class="text-gray-300">Real-time insights and mobile notifications.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY -->
+  <section id="why" class="fade-in py-28">
+    <div class="max-w-6xl mx-auto text-center px-6">
+      <h3 class="text-4xl font-bold mb-16 gradient-text">Why PERIMETER-LOCK Matters</h3>
+      <div class="grid md:grid-cols-4 gap-10">
+        <div class="glass p-8 rounded-xl glow-border">
+          <h4 class="text-blue-400 font-semibold mb-3">24/7 AI Monitoring</h4>
+          <p class="text-gray-300">Autonomous detection day & night.</p>
+        </div>
+        <div class="glass p-8 rounded-xl glow-border">
+          <h4 class="text-blue-400 font-semibold mb-3">Instant Alerts</h4>
+          <p class="text-gray-300">Push notifications for quick action.</p>
+        </div>
+        <div class="glass p-8 rounded-xl glow-border">
+          <h4 class="text-blue-400 font-semibold mb-3">Zero Manual Work</h4>
+          <p class="text-gray-300">AI automates surveillance tasks.</p>
+        </div>
+        <div class="glass p-8 rounded-xl glow-border">
+          <h4 class="text-blue-400 font-semibold mb-3">Unified Dashboard</h4>
+          <p class="text-gray-300">Track, analyze, and control everything.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="contact" class="py-10 text-center bg-gray-900 border-t border-gray-800 text-gray-400 text-sm">
+    <p>© 2025 <span class="gradient-text font-semibold">PERIMETER-LOCK</span>. All rights reserved.</p>
+    <p class="mt-3">Developed with ❤️ by <span class="text-blue-400">Sandhiya</span>, <span class="text-blue-400">Swetha</span> & <span class="text-blue-400">Sumitha</span></p>
+  </footer>
+
+  <script>
+    // Particles background
+    particlesJS("particles-js", {
+      particles: {
+        number: { value: 80 },
+        color: { value: "#00e5ff" },
+        shape: { type: "circle" },
+        opacity: { value: 0.3 },
+        size: { value: 2.5 },
+        move: { enable: true, speed: 1 }
+      },
+      interactivity: {
+        events: { onhover: { enable: true, mode: "repulse" } }
+      }
+    });
+
+    // Scroll fade animation
+    const sections=document.querySelectorAll('.fade-in');
+    const obs=new IntersectionObserver(entries=>{
+      entries.forEach(e=>{ if(e.isIntersecting)e.target.classList.add('visible'); });
+    },{threshold:0.2});
+    sections.forEach(s=>obs.observe(s));
+  </script>
+</body>
+</html>

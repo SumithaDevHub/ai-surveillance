@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PERIMETER-LOCK Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { background: #1F2937; color: #F9FAFB; font-family: sans-serif; }
+    .camera-feed { position: relative; border-radius: 12px; overflow: hidden; }
+    .bounding-box {
+      position: absolute;
+      border: 2px solid red;
+      animation: blink 1.5s infinite alternate;
+    }
+    @keyframes blink {
+      0% { opacity: 0.2; }
+      50% { opacity: 1; }
+      100% { opacity: 0.2; }
+    }
+    .alert { background: #DC2626; color: white; padding: 0.5rem 1rem; border-radius: 8px; margin-bottom: 0.5rem; }
+    .stat-card { transition: transform 0.3s, box-shadow 0.3s; }
+    .stat-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+  </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+  <!-- Header -->
+  <header class="bg-gray-800 p-4 flex justify-between items-center">
+    <h1 class="text-2xl font-bold text-white">PERIMETER-LOCK Dashboard</h1>
+    <div>
+      <button class="bg-blue-600 px-4 py-2 rounded hover:bg-blue-700">Logout</button>
+    </div>
+  </header>
+
+  <!-- Stats Section -->
+  <section class="p-6 grid grid-cols-1 md:grid-cols-4 gap-6">
+    <div class="stat-card bg-gray-700 p-6 rounded-xl">
+      <h2 class="text-xl font-bold mb-2">Active Cameras</h2>
+      <p class="text-3xl">4</p>
+    </div>
+    <div class="stat-card bg-gray-700 p-6 rounded-xl">
+      <h2 class="text-xl font-bold mb-2">Detected Threats</h2>
+      <p class="text-3xl">2</p>
+    </div>
+    <div class="stat-card bg-gray-700 p-6 rounded-xl">
+      <h2 class="text-xl font-bold mb-2">Alerts Today</h2>
+      <p class="text-3xl">5</p>
+    </div>
+    <div class="stat-card bg-gray-700 p-6 rounded-xl">
+      <h2 class="text-xl font-bold mb-2">Events Logged</h2>
+      <p class="text-3xl">12</p>
+    </div>
+  </section>
+
+  <!-- Main Dashboard Grid -->
+  <section class="p-6 grid grid-cols-1 lg:grid-cols-3 gap-6 flex-1">
+    
+    <!-- Camera Feeds -->
+    <div class="col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="camera-feed bg-gray-800 h-64 relative">
+        <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover" />
+        <!-- Simulated bounding boxes -->
+        <div class="bounding-box top-20 left-20 w-16 h-16"></div>
+        <div class="bounding-box top-40 left-36 w-20 h-20"></div>
+      </div>
+      <div class="camera-feed bg-gray-800 h-64 relative">
+        <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover" />
+        <div class="bounding-box top-10 left-10 w-24 h-24"></div>
+      </div>
+      <div class="camera-feed bg-gray-800 h-64 relative">
+        <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover" />
+        <div class="bounding-box top-16 left-28 w-16 h-16"></div>
+      </div>
+      <div class="camera-feed bg-gray-800 h-64 relative">
+        <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover" />
+      </div>
+    </div>
+
+    <!-- Alerts Panel -->
+    <div class="bg-gray-700 rounded-xl p-6 h-full flex flex-col">
+      <h2 class="text-xl font-bold mb-4">Alerts</h2>
+      <div id="alerts" class="overflow-y-auto flex-1">
+        <div class="alert">⚠️ Motion detected in Living Room</div>
+        <div class="alert">⚠️ Unknown face detected at Front Door</div>
+        <div class="alert">⚠️ Suspicious logo detected in Garage</div>
+      </div>
+      <button id="newAlert" class="mt-4 bg-blue-600 px-4 py-2 rounded hover:bg-blue-700">Simulate Alert</button>
+    </div>
+
+  </section>
+
+  <!-- Event Log -->
+  <section class="p-6 bg-gray-800 rounded-xl m-6">
+    <h2 class="text-xl font-bold mb-4">Event Log</h2>
+    <ul id="eventLog" class="list-disc list-inside text-gray-200">
+      <li>[10:12 AM] Front Door - Face Recognized</li>
+      <li>[10:15 AM] Backyard - Motion Detected</li>
+      <li>[10:18 AM] Garage - Logo Detected</li>
+    </ul>
+  </section>
+
+  <!-- JS for dynamic alerts -->
+  <script>
+    const alertsContainer = document.getElementById('alerts');
+    const eventLog = document.getElementById('eventLog');
+    const newAlertBtn = document.getElementById('newAlert');
+
+    newAlertBtn.addEventListener('click', () => {
+      const alertText = '⚠️ Intruder detected at Front Gate';
+      const alertDiv = document.createElement('div');
+      alertDiv.classList.add('alert');
+      alertDiv.textContent = alertText;
+      alertsContainer.prepend(alertDiv);
+
+      const logItem = document.createElement('li');
+      const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      logItem.textContent = `[${time}] Front Gate - Intruder Detected`;
+      eventLog.prepend(logItem);
+    });
+  </script>
+
+</body>
+</html>
